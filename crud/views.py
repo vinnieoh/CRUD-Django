@@ -24,8 +24,12 @@ class UpdateProdutoView(UpdateView):
     prduto = Produto
     template_name = 'prod_update_form.html'
     fields = ['produto', 'quantidade', 'preco']
+    queryset = Produto.objects.get_queryset()
     success_url = reverse_lazy('home')
 
 
 class DeleteProdutoView(DeleteView):
     prduto = Produto
+    template_name = 'prod_delete.html'
+    queryset = Produto.objects.get_queryset()
+    success_url = reverse_lazy('home')

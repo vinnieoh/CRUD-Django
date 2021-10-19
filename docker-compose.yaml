@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+
+  pgcrud:
+    build: 
+      dockerfile: ./docker/pgcrud.dockerfile
+      context: .
+    image: vinnioh/pgcrud_django:v1
+    container_name: pgcrud
+    ports: 
+      - "5432"
+    networks: 
+      - nwcrud
+    volumes: 
+      - pgdata:/var/lib/postgresql/data/
+
+  web:
+    build: 
+      dockerfile: ./docker/web.dockerfile
+      context: .
+    image: vinnioh/web_crud:v1
+    container_name: web
+    ports:
+      - "8080"
+    networks:
+      - "nwcrud"
+    depends_on:
+      - "pgcrud"
+
+networks: 
+  nwcrud:
+    driver: bridge
+
+volumes: 
+  pgdata:
+
+  
