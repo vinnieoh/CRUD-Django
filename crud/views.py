@@ -10,3 +10,26 @@ class HomeView(ListView):
     template_name = 'home.html'
     queryset = Produto.objects.all()
     context_object_name = 'produtos'
+
+
+class CreateProdutoView(CreateView):
+    prduto = Produto
+    template_name = 'prod_create_form.html'
+    fields = ['produto', 'quantidade', 'preco']
+    queryset = Produto.objects.get_queryset()
+    success_url = reverse_lazy('home')
+
+
+class UpdateProdutoView(UpdateView):
+    prduto = Produto
+    template_name = 'prod_update_form.html'
+    fields = ['produto', 'quantidade', 'preco']
+    queryset = Produto.objects.get_queryset()
+    success_url = reverse_lazy('home')
+
+
+class DeleteProdutoView(DeleteView):
+    prduto = Produto
+    template_name = 'prod_delete.html'
+    queryset = Produto.objects.get_queryset()
+    success_url = reverse_lazy('home')
