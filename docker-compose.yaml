@@ -2,19 +2,6 @@ version: "3.8"
 
 services:
 
-  pgcrud:
-    build: 
-      dockerfile: ./docker/pgcrud.dockerfile
-      context: .
-    image: vinnioh/pgcrud_django:v1
-    container_name: pgcrud
-    ports: 
-      - "5432"
-    networks: 
-      - nwcrud
-    volumes: 
-      - pgdata:/var/lib/postgresql/data/
-
   web:
     build: 
       dockerfile: ./docker/web.dockerfile
@@ -27,6 +14,19 @@ services:
       - "nwcrud"
     depends_on:
       - "pgcrud"
+
+  pgcrud:
+    build: 
+      dockerfile: ./docker/pgcrud.dockerfile
+      context: .
+    image: vinnioh/pgcrud_django:v1
+    container_name: pgcrud
+    ports: 
+      - "5432"
+    networks: 
+      - nwcrud
+    volumes: 
+      - pgdata:/var/lib/postgresql/data
 
 networks: 
   nwcrud:
