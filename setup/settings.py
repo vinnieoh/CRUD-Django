@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9n5pz57@!u#27qv97k_)vs7a-wq-eon13z60h)_4(^u8p7$_)v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'crud_django',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'root12345',
-        'HOST': 'pgcrud',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }

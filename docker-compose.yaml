@@ -1,38 +1,24 @@
 version: "3.8"
 
 services:
-
+   
   web:
-    build: 
-      dockerfile: ./docker/web.dockerfile
-      context: .
-    image: vinnioh/web_crud:v1
-    container_name: web
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
     ports:
-      - "8080"
-    networks:
-      - "nwcrud"
+      - 8000:8000
     depends_on:
-      - "pgcrud"
+      - db
 
-  pgcrud:
-    build: 
-      dockerfile: ./docker/pgcrud.dockerfile
-      context: .
-    image: vinnioh/pgcrud_django:v1
-    container_name: pgcrud
-    ports: 
-      - "5432"
-    networks: 
-      - nwcrud
-    volumes: 
-      - pgdata:/var/lib/postgresql/data
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root12345
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
 
-networks: 
-  nwcrud:
-    driver: bridge
-
-volumes: 
-  pgdata:
-
-  
+volumes:
+  postgres_data:
