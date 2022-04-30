@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'crud_django',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'root12345',
-        'HOST': 'pgcrud',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
